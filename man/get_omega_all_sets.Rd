@@ -24,3 +24,23 @@ A data frame with columns:
 \description{
 Applies multilevel omega estimation to multiple sets of items defined in a named list, returning both within and between omega coefficients for each scale.
 }
+\examples{
+# Simulate some multilevel item data
+set.seed(17081945)
+sim_data <- data.frame(participant_id = rep(1:100, each = 5))
+
+for (i in 1:4) {
+  sim_data[[paste0("A_item", i)]] <- rnorm(500, 5, 1)
+  sim_data[[paste0("B_item", i)]] <- rnorm(500, 5, 1)
+}
+
+# Define item sets
+item_sets <- list(
+   scale_A = c("A_item1", "A_item2", "A_item3", "A_item4"),
+   scale_B = c("B_item1", "B_item2", "B_item3", "B_item4")
+)
+
+# Compute multilevel omega
+get_omega_all_sets(sim_data, item_sets, id = "participant_id")
+
+}

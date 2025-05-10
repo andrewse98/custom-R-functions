@@ -26,3 +26,15 @@ A list with the following components:
 \description{
 Estimates McDonald's omega coefficients for multilevel data using a multilevel structural equation model (SEM).
 }
+\examples{
+# Simulate item responses for one scale
+set.seed(17081945)
+sim_data <- data.frame(participant_id = rep(1:100, each = 5))
+for (i in 1:4) {
+  sim_data[[paste0("A_item", i)]] <- rnorm(500, 5, 1)
+}
+
+# Run omega estimation
+get_omega(sim_data, items = paste0("A_item", 1:4), id = "participant_id")
+
+}
